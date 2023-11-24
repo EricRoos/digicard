@@ -1,0 +1,45 @@
+<div class='grid grid-cols-2 w-full'>
+  <div class='bg-slate-800 highlight-white/5 text-white w-full h-full rounded p-4'>
+    <%= form_with(model: @card, url: card_path(@card), method: :put, html: {class: 'h-full flex flex-col justify-between'}) do |f| %>
+      <div class='grid gap-4'>
+        <div class='text-lg font-semibold'>Configuration</div>
+        <div class='grid'>
+          <%= f.label :name %>
+          <%= f.text_field :name, class: 'bg-slate-800 hover:bg-slate-700' %>
+        </div>
+
+        <div class='grid'>
+          <%= f.label :text_color %>
+          <%= f.color_field :text_color %>
+        </div>
+
+        <div class='grid'>
+          <%= f.label :inner_border_color %>
+          <%= f.color_field :inner_border_color %>
+        </div>
+
+        <div class='grid'>
+          <%= f.label :outer_border_color %>
+          <%= f.color_field :outer_border_color %>
+        </div>
+
+        <div class='grid'>
+          <%= f.label :image %>
+          <%= f.file_field :image %>
+        </div>
+
+        <div class='grid'>
+          <%= f.label :background_image %>
+          <%= f.file_field :background_image %>
+        </div>
+        <%= render partial: "#{@card.class.to_s.tableize}/fields", locals: { card: @card, form: f } %>
+      </div>
+      <button type="submit" class="mt-auto bg-indigo-500 rounded px py-2 drop-shadow">Update</button>
+    <% end %>
+  </div>
+  <div>
+    <div class='w-3/4 mx-auto'>
+      <%= render partial: 'cards/card', locals: { card: @card } %>
+    </div>
+  </div>
+</div>

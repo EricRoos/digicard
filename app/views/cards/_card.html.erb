@@ -1,0 +1,23 @@
+<% url = url_for(@card.background_image) %>
+<div style="background-image: url('<%= url%>'); background-color: #4b464A; color: <%=@card.text_color%>; border-color: <%= @card.outer_border_color %>;" class='h-full w-auto mx-auto p-4 aspect-[3/4.5] border-8 border-solid rounded p-4 pt-2 flex flex-col box-shadow'>
+  <h1 class="font-bold text-2xl"><%= @card.name %></h1>
+  <img style="border-color: <%= @card.inner_border_color %>;" class="shadow-inner rounded object-top object-cover max-w-full w-full max-h-[44%] mt-3 my-4 border border-4 border-solid" src="<%= url_for(@card.image) %>" />
+  <div class='my-auto grid gap-4'>
+    <% @card.minion_attacks.each do |attack| %>
+      <button class='flex justify-between w-full text-left'>
+        <div class='w-3/4'>
+          <div class='font-semibold text-lg'>
+            <%= attack.name %>
+          </div>
+          <%= attack.description %>
+        </div>
+        <% if !attack.damage.zero? %>
+          <span class='font-semibold text-lg'><%= attack.damage %></span>
+        <% end %>
+      </button>
+    <% end %>
+  </div>
+  <div class='text-sm mt-auto'>
+    Published On: <%= @card.created_at.strftime("%m/%d/%Y") %>
+  </div>
+</div>

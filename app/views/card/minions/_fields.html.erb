@@ -1,0 +1,13 @@
+<div class='text-lg font-semibold'>Attacks</div>
+<%= form.fields_for(:minion_attacks) do |fields| %>
+  <div class='flex gap-4'>
+    <div class='grid w-full'>
+      <%= fields.label :name %>
+      <%= fields.text_field :name, class: 'bg-slate-800 hover:bg-slate-700' %>
+    </div>
+    <div class='grid flex-shrink'>
+      <%= fields.label :damage %>
+      <%= fields.text_field :damage, class: 'bg-slate-800 hover:bg-slate-700' %>
+    </div>
+  </div>
+<% end %>
